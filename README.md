@@ -1,6 +1,6 @@
 Taskify: To-Do List App
 
-Taskee is a simple web-based To-Do List App that helps you organize tasks efficiently. With a clean design and essential features, it ensures better productivity.
+Taskify is a simple web-based To-Do List App that helps you organize tasks efficiently. With a clean design and essential features, it ensures better productivity.
 
 
 Features
