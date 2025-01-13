@@ -1,6 +1,6 @@
-Taskify: To-Do List App
+Donezo: To-Do List App
 
-Taskify is a simple web-based To-Do List App that helps you organize tasks efficiently. With a clean design and essential features, it ensures better productivity.
+Donezo is a simple web-based To-Do List App that helps you organize tasks efficiently. With a clean design and essential features, it ensures better productivity.
 
 
 Features
