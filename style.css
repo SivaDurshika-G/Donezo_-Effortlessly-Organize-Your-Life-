@@ -1,64 +1,94 @@
 body {
     font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    margin: 0;
-    background-color: #f4f4f9;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+
+:root {
+    --bg-color: #f4f4f9;
+    --text-color: #333;
+    --btn-color: #28a745;
+    --btn-hover: #218838;
+    --task-bg: #ffffff;
+    --high-priority: #ffcccb;
+}
+
+.dark-mode {
+    --bg-color: #333;
+    --text-color: #f4f4f9;
+    --btn-color: #007bff;
+    --btn-hover: #0056b3;
+    --task-bg: #555;
+    --high-priority: #ff5555;
 }
 
 .container {
-    background: white;
+    background-color: var(--task-bg);
     padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 300px;
-}
-
-h1 {
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    width: 350px;
     text-align: center;
 }
 
-input[type="text"] {
-    width: 70%;
-    padding: 10px;
-    margin-right: 10px;
-    border: 1px solid #ccc;
+input[type="text"], select {
+    width: calc(70% - 10px);
+    padding: 8px;
+    margin-right: 5px;
+    border: 1px solid var(--text-color);
     border-radius: 4px;
 }
 
 button {
-    padding: 10px 15px;
-    background-color: #28a745;
+    padding: 8px 12px;
+    background-color: var(--btn-color);
+    color: #fff;
     border: none;
-    color: white;
     border-radius: 4px;
     cursor: pointer;
 }
 
 button:hover {
-    background-color: #218838;
+    background-color: var(--btn-hover);
 }
 
 ul {
-    list-style-type: none;
+    list-style: none;
     padding: 0;
+    margin-top: 20px;
 }
 
 li {
-    display: flex;
-    justify-content: space-between;
-    background-color: #f8f9fa;
-    padding: 8px;
+    background-color: var(--task-bg);
+    padding: 10px;
     margin: 5px 0;
     border-radius: 4px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-button.delete {
+li.high {
+    background-color: var(--high-priority);
+}
+
+.completed {
+    text-decoration: line-through;
+    color: #6c757d;
+}
+
+.delete-btn {
     background-color: #dc3545;
+    padding: 5px 8px;
+    margin-left: 10px;
 }
 
-button.delete:hover {
+.delete-btn:hover {
     background-color: #c82333;
 }
