@@ -1,26 +1,21 @@
-To-Do List 
+Taskee: To-Do List App
 
-Overview
+Taskee is a simple web-based To-Do List App that helps you organize tasks efficiently. With a clean design and essential features, it ensures better productivity.
 
-A simple and user-friendly To-Do List app designed to help you stay organized and productive. Add, edit, and delete tasks with ease to keep track of your daily goals.
 
 Features
 
-Add new tasks.
+Add tasks with optional descriptions.
 
-Edit existing tasks.
+Assign priority levels (Low, Medium, High).
 
-Delete tasks when completed.
+Track active, completed, and total tasks.
 
-Simple, clean interface for easy navigation.
+Search tasks using a search bar.
 
+Clear all completed tasks.
 
-Installation
-
-1. Clone the repository.
-
-
-2. Open index.html in your browser.
+Real-time date and time display.
 
 
 
@@ -33,6 +28,31 @@ CSS
 JavaScript
 
 
-License
+How to Run
 
-This project is licensed under the MIT License.
+1. Download the project files.
+
+
+2. Open the index.html file in a browser.
+
+
+3. Start adding and managing your tasks!
+
+
+
+
+File Structure
+
+index.html: App layout and structure.
+
+styles.css: Styling for the app.
+
+script.js: App functionality.
+
+
+
+Author
+
+Developed by Siva Durshika G 
+
+
