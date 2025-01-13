@@ -1,33 +1,75 @@
-function addTask() {
-    const taskInput = document.getElementById('taskInput');
-    const priority = document.getElementById('priority').value;
-    const taskText = taskInput.value.trim();
+document.addEventListener("DOMContentLoaded", () => {
+  const taskForm = document.getElementById("task-form");
+  const taskInput = document.getElementById("task");
+  const descriptionInput = document.getElementById("description");
+  const prioritySelect = document.getElementById("priority");
+  const taskList = document.getElementById("tasks");
+  const allTasksCount = document.getElementById("all-tasks");
+  const activeTasksCount = document.getElementById("active-tasks");
+  const completedTasksCount = document.getElementById("completed-tasks");
+  const clearCompletedBtn = document.getElementById("clear-completed");
+  const timeDisplay = document.getElementById("time");
 
-    if (taskText !== '') {
-        const taskList = document.getElementById('taskList');
-        const listItem = document.createElement('li');
+  // Display current time
+  const updateTime = () => {
+    const now = new Date();
+    timeDisplay.textContent = now.toLocaleString();
+  };
+  setInterval(updateTime, 1000);
 
-        listItem.textContent = taskText;
-        if (priority === 'high') {
-            listItem.classList.add('high');
-        }
+  const tasks = [];
 
-        listItem.onclick = () => listItem.classList.toggle('completed');
+  const updateStats = () => {
+    allTasksCount.textContent = tasks.length;
+    activeTasksCount.textContent = tasks.filter((task) => !task.completed).length;
+    completedTasksCount.textContent = tasks.filter((task) => task.completed).length;
+  };
 
-        const deleteButton = document.createElement('button');
-        deleteButton.textContent = 'Delete';
-        deleteButton.classList.add('delete-btn');
-        deleteButton.onclick = (e) => {
-            e.stopPropagation();
-            taskList.removeChild(listItem);
-        };
+  const renderTasks = () => {
+    taskList.innerHTML = "";
+    tasks.forEach((task, index) => {
+      const li = document.createElement("li");
+      li.className = task.completed ? "completed" : "";
+      li.innerHTML = `${task.priority} - ${task.name}: ${task.description}
+        <button onclick="toggleComplete(${index})">✔</button>
+        <button onclick="deleteTask(${index})">❌</button>`;
+      taskList.appendChild(li);
+    });
+  };
 
-        listItem.appendChild(deleteButton);
-        taskList.appendChild(listItem);
-        taskInput.value = '';
+  const addTask = (name, description, priority) => {
+    tasks.push({ name, description, priority, completed: false });
+    renderTasks();
+    updateStats();
+  };
+
+  const toggleComplete = (index) => {
+    tasks[index].completed = !tasks[index].completed;
+    renderTasks();
+    updateStats();
+  };
+
+  const deleteTask = (index) => {
+    tasks.splice(index, 1);
+    renderTasks();
+    updateStats();
+  };
+
+  const clearCompleted = () => {
+    for (let i = tasks.length - 1; i >= 0; i--) {
+      if (tasks[i].completed) tasks.splice(i, 1);
     }
-}
+    renderTasks();
+    updateStats();
+  };
 
-function toggleDarkMode() {
-    document.body.classList.toggle('dark-mode');
-}
+  taskForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    addTask(taskInput.value, descriptionInput.value, prioritySelect.value);
+    taskInput.value = "";
+    descriptionInput.value = "";
+  });
+
+  clearCompletedBtn.addEventListener("click", clearCompleted);
+  updateStats();
+});
