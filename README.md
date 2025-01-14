@@ -1,6 +1,6 @@
 📄Donezo:To-Do List App
 
-🔔Overview
+🌐Overview
 
 The To-Do List App is a simple yet efficient web application designed to help users manage their daily tasks effectively. Built as part of the Seven Days Web Development Bootcamp, this project demonstrates core web development skills, including HTML, CSS, and JavaScript.
 
