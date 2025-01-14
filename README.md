@@ -85,6 +85,6 @@ Future Enhancements
 🎖️Thanks to the instructors and peers for their guidance and support.
 
 
-🎖️License
+🌟License
 
 📊This project is licensed under the MIT License.
