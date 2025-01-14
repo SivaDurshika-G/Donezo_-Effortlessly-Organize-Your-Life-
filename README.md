@@ -1,4 +1,4 @@
-📄Donezo:To-Do List App
+✨Donezo:To-Do List App✨
 
 🌐Overview
 
@@ -30,7 +30,7 @@ To run this project, you’ll need:
 
 💻A modern web browser (e.g., Chrome, Firefox).
 
-👾[Optional] A code editor (e.g., VS Code) to explore the source code.
+👾A code editor (e.g., VS Code) to explore the source code.
 
 
 🛠️Installation
