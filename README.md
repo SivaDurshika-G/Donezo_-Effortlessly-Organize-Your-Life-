@@ -37,7 +37,7 @@ To run this project, you’ll need:
 
 1. Clone this repository:
 
-git clone https://github.com/yourusername/todo-l🛠️ist-app.git🛠️🛠️⛏️⚒️⚒️⚒️🛠️⛏️📐📐
+git clone https://github.com/yourusername/todo-list-app.git
 
 
 2. Open the index.html file in your browser to run the app.
