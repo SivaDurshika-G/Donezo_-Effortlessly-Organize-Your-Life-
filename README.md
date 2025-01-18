@@ -39,7 +39,7 @@ To run this project, you’ll need:
 
 1. Clone this repository:
 
-git clone https://github.com/yourusername/todo-list-app.git
+https://github.com/SivaDurshika-G/Donezo_-Effortlessly-Organize-Your-Life-
 
 
 2. Open the index.html file in your browser to run the app.
