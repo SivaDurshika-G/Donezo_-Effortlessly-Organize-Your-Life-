@@ -1,26 +1,23 @@
+/* Blue Background */
 body {
-  background-color: #007bff; /* Blue background */
+  background-color: #007bff; 
   font-family: Arial, sans-serif;
   color: #fff;
   margin: 0;
+  padding: 0;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
 }
 
-.wrapper {
-  width: 80%;
-  display: flex;
-  justify-content: center;
-}
-
+/* Centered Content Box */
 .todo-container {
   background-color: #fff;
   color: #000;
   padding: 20px;
   border-radius: 10px;
-  width: 80%;
+  width: 60%;
   max-width: 600px;
   text-align: center;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -28,14 +25,15 @@ body {
 
 h1 {
   font-size: 2em;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 h2, h3 {
-  margin-top: 20px;
   font-size: 1.3em;
+  margin-top: 20px;
 }
 
+/* Input Fields Styling */
 .task-input input, .task-input textarea, .task-input select {
   width: 100%;
   padding: 10px;
@@ -43,6 +41,7 @@ h2, h3 {
   border-radius: 5px;
 }
 
+/* Add Task Button */
 button {
   background-color: #28a745;
   color: white;
@@ -57,6 +56,7 @@ button:hover {
   background-color: #218838;
 }
 
+/* Task List Styling */
 ul {
   list-style-type: none;
   padding: 0;
@@ -89,4 +89,9 @@ li button {
 
 li button:hover {
   background-color: #c82333;
+}
+
+/* Clear Completed Tasks Button */
+button:active {
+  background-color: #0069d9;
 }
