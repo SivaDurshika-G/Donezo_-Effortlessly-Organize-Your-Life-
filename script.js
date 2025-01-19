@@ -1,13 +1,10 @@
-// Display current date and time
-document.getElementById('dateTime').innerHTML = new Date().toLocaleString();
-
 // Add a task to the list
 function addTask() {
   const taskInput = document.getElementById('task').value;
   const descriptionInput = document.getElementById('description').value;
   const priorityInput = document.getElementById('priority').value;
 
-  if (taskInput.trim() === '') return;
+  if (taskInput.trim() === '') return; // Do not add empty tasks
 
   const task = {
     title: taskInput,
