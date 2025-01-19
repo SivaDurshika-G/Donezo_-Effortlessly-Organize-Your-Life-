@@ -1,5 +1,7 @@
+// Display current date and time
 document.getElementById('dateTime').innerHTML = new Date().toLocaleString();
 
+// Add a task to the list
 function addTask() {
   const taskInput = document.getElementById('task').value;
   const descriptionInput = document.getElementById('description').value;
@@ -14,6 +16,7 @@ function addTask() {
     completed: false
   };
 
+  // Create new task element
   const taskElement = document.createElement('li');
   taskElement.innerHTML = `
     <span>${task.title} - ${task.priority}</span>
@@ -22,13 +25,16 @@ function addTask() {
   `;
   taskElement.classList.add(priorityInput.toLowerCase());
 
+  // Append the new task to the active tasks list
   const activeTasksList = document.getElementById('activeTasks');
   activeTasksList.appendChild(taskElement);
 
+  // Clear input fields
   document.getElementById('task').value = '';
   document.getElementById('description').value = '';
 }
 
+// Mark task as completed
 function completeTask(button) {
   const taskElement = button.parentElement;
   taskElement.classList.add('completed');
@@ -36,11 +42,13 @@ function completeTask(button) {
   document.getElementById('activeTasks').removeChild(taskElement);
 }
 
+// Delete a task
 function deleteTask(button) {
   const taskElement = button.parentElement;
   taskElement.remove();
 }
 
+// Clear completed tasks
 function clearCompleted() {
   const completedTasks = document.getElementById('completedTasks');
   completedTasks.innerHTML = '';
