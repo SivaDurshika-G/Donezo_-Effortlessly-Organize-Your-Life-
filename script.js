@@ -1,75 +1,50 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const taskForm = document.getElementById("task-form");
-  const taskInput = document.getElementById("task");
-  const descriptionInput = document.getElementById("description");
-  const prioritySelect = document.getElementById("priority");
-  const taskList = document.getElementById("tasks");
-  const allTasksCount = document.getElementById("all-tasks");
-  const activeTasksCount = document.getElementById("active-tasks");
-  const completedTasksCount = document.getElementById("completed-tasks");
-  const clearCompletedBtn = document.getElementById("clear-completed");
-  const timeDisplay = document.getElementById("time");
+document.getElementById('dateTime').innerHTML = new Date().toLocaleString();
 
-  // Display current time
-  const updateTime = () => {
-    const now = new Date();
-    timeDisplay.textContent = now.toLocaleString();
-  };
-  setInterval(updateTime, 1000);
+function addTask() {
+  const taskInput = document.getElementById('task').value;
+  const descriptionInput = document.getElementById('description').value;
+  const priorityInput = document.getElementById('priority').value;
 
-  const tasks = [];
+  if (taskInput.trim() === '') return;
 
-  const updateStats = () => {
-    allTasksCount.textContent = tasks.length;
-    activeTasksCount.textContent = tasks.filter((task) => !task.completed).length;
-    completedTasksCount.textContent = tasks.filter((task) => task.completed).length;
+  const task = {
+    title: taskInput,
+    description: descriptionInput,
+    priority: priorityInput,
+    completed: false
   };
 
-  const renderTasks = () => {
-    taskList.innerHTML = "";
-    tasks.forEach((task, index) => {
-      const li = document.createElement("li");
-      li.className = task.completed ? "completed" : "";
-      li.innerHTML = `${task.priority} - ${task.name}: ${task.description}
-        <button onclick="toggleComplete(${index})">✔</button>
-        <button onclick="deleteTask(${index})">❌</button>`;
-      taskList.appendChild(li);
-    });
-  };
+  const taskList = document.getElementById('taskList');
+  const activeTasks = document.getElementById('activeTasks');
+  const completedTasks = document.getElementById('completedTasks');
 
-  const addTask = (name, description, priority) => {
-    tasks.push({ name, description, priority, completed: false });
-    renderTasks();
-    updateStats();
-  };
+  const taskElement = document.createElement('li');
+  taskElement.innerHTML = `
+    <span>${task.title} - ${task.priority}</span>
+    <button onclick="completeTask(this)">✔</button>
+    <button onclick="deleteTask(this)">❌</button>
+  `;
 
-  const toggleComplete = (index) => {
-    tasks[index].completed = !tasks[index].completed;
-    renderTasks();
-    updateStats();
-  };
+  taskElement.classList.add(task.priority.toLowerCase());
+  taskList.appendChild(taskElement);
+  activeTasks.appendChild(taskElement);
+  document.getElementById('task').value = '';
+  document.getElementById('description').value = '';
+}
 
-  const deleteTask = (index) => {
-    tasks.splice(index, 1);
-    renderTasks();
-    updateStats();
-  };
+function completeTask(button) {
+  const taskElement = button.parentElement;
+  taskElement.classList.add('completed');
+  document.getElementById('completedTasks').appendChild(taskElement);
+  document.getElementById('activeTasks').removeChild(taskElement);
+}
 
-  const clearCompleted = () => {
-    for (let i = tasks.length - 1; i >= 0; i--) {
-      if (tasks[i].completed) tasks.splice(i, 1);
-    }
-    renderTasks();
-    updateStats();
-  };
+function deleteTask(button) {
+  const taskElement = button.parentElement;
+  taskElement.parentElement.removeChild(taskElement);
+}
 
-  taskForm.addEventListener("submit", (e) => {
-    e.preventDefault();
-    addTask(taskInput.value, descriptionInput.value, prioritySelect.value);
-    taskInput.value = "";
-    descriptionInput.value = "";
-  });
-
-  clearCompletedBtn.addEventListener("click", clearCompleted);
-  updateStats();
-});
+function clearCompleted() {
+  const completedTasks = document.getElementById('completedTasks');
+  completedTasks.innerHTML = '';
+}
