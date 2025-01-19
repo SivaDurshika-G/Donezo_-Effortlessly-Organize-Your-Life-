@@ -3,40 +3,36 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Donezo! To-Do List</title>
+  <title>Donezo! - To-Do List App</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="wrapper">
-    <div class="todo-container">
-      <h1>Welcome to Donezo💌! - To-Do List App</h1>
-      <p>Effortlessly organize your life with our app.</p>
-      <p id="dateTime"></p>
+  <div class="todo-container">
+    <h1>Welcome to Donezo! - To-Do List App</h1>
+    <p>Effortlessly organize your life with our app.</p>
+    <p id="dateTime"></p>
 
-      <!-- Task input section -->
-      <div class="task-input">
-        <input type="text" id="task" placeholder="Add a task..." />
-        <textarea id="description" placeholder="Optional description..."></textarea>
-        <select id="priority">
-          <option value="Low">Low Priority</option>
-          <option value="Medium">Medium Priority</option>
-          <option value="High">High Priority</option>
-        </select>
-        <button onclick="addTask()">Add Task</button>
-      </div>
-
-      <!-- Task lists -->
-      <h2>All Tasks:</h2>
-      <ul id="taskList"></ul>
-
-      <h3>Active Tasks:</h3>
-      <ul id="activeTasks"></ul>
-
-      <h3>Completed Tasks:</h3>
-      <ul id="completedTasks"></ul>
-
-      <button onclick="clearCompleted()">Clear Completed Tasks</button>
+    <div class="task-input">
+      <input type="text" id="task" placeholder="Add a task..." />
+      <textarea id="description" placeholder="Optional description..."></textarea>
+      <select id="priority">
+        <option value="Low">Low Priority</option>
+        <option value="Medium">Medium Priority</option>
+        <option value="High">High Priority</option>
+      </select>
+      <button onclick="addTask()">Add Task</button>
     </div>
+
+    <h2>All Tasks:</h2>
+    <ul id="taskList"></ul>
+
+    <h3>Active Tasks:</h3>
+    <ul id="activeTasks"></ul>
+
+    <h3>Completed Tasks:</h3>
+    <ul id="completedTasks"></ul>
+
+    <button onclick="clearCompleted()">Clear Completed Tasks</button>
   </div>
 
   <script src="app.js"></script>
