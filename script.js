@@ -14,20 +14,17 @@ function addTask() {
     completed: false
   };
 
-  const taskList = document.getElementById('taskList');
-  const activeTasks = document.getElementById('activeTasks');
-  const completedTasks = document.getElementById('completedTasks');
-
   const taskElement = document.createElement('li');
   taskElement.innerHTML = `
     <span>${task.title} - ${task.priority}</span>
     <button onclick="completeTask(this)">✔</button>
     <button onclick="deleteTask(this)">❌</button>
   `;
+  taskElement.classList.add(priorityInput.toLowerCase());
 
-  taskElement.classList.add(task.priority.toLowerCase());
-  taskList.appendChild(taskElement);
-  activeTasks.appendChild(taskElement);
+  const activeTasksList = document.getElementById('activeTasks');
+  activeTasksList.appendChild(taskElement);
+
   document.getElementById('task').value = '';
   document.getElementById('description').value = '';
 }
@@ -41,7 +38,7 @@ function completeTask(button) {
 
 function deleteTask(button) {
   const taskElement = button.parentElement;
-  taskElement.parentElement.removeChild(taskElement);
+  taskElement.remove();
 }
 
 function clearCompleted() {
