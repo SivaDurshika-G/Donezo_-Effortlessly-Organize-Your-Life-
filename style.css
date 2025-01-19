@@ -1,6 +1,6 @@
 /* Blue Background */
 body {
-  background-color: #007bff; 
+  background-color: #007bff;
   font-family: Arial, sans-serif;
   color: #fff;
   margin: 0;
@@ -11,7 +11,7 @@ body {
   height: 100vh;
 }
 
-/* Centered Content Box */
+/* Centered Box */
 .todo-container {
   background-color: #fff;
   color: #000;
@@ -23,6 +23,7 @@ body {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+/* Heading Styles */
 h1 {
   font-size: 2em;
   margin-bottom: 10px;
@@ -33,7 +34,7 @@ h2, h3 {
   margin-top: 20px;
 }
 
-/* Input Fields Styling */
+/* Input Fields */
 .task-input input, .task-input textarea, .task-input select {
   width: 100%;
   padding: 10px;
@@ -73,6 +74,7 @@ li {
   align-items: center;
 }
 
+/* Completed Task Styling */
 .completed {
   text-decoration: line-through;
   background-color: #d4edda;
