@@ -3,48 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Advanced To-Do List App</title>
+    <title>Next-Gen To-Do List App</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="todo-wrapper">
-        <div class="todo-container">
-            <h1>To-Do List App 🚀</h1>
+    <div class="app-wrapper">
+        <div class="app-container">
+            <header>
+                <h1>🚀 My Next-Gen To-Do List</h1>
+                <button id="themeToggle">Toggle Light/Dark Mode</button>
+            </header>
 
             <!-- Task Input Section -->
-            <div class="todo-input-container">
-                <input type="text" id="taskInput" placeholder="Add a task..." />
-                <select id="categorySelect">
-                    <option value="Personal">Personal</option>
-                    <option value="Work">Work</option>
-                    <option value="Shopping">Shopping</option>
-                </select>
+            <div class="input-container">
+                <input type="text" id="taskInput" placeholder="What do you need to do?" />
                 <select id="prioritySelect">
-                    <option value="High">High</option>
-                    <option value="Medium">Medium</option>
-                    <option value="Low">Low</option>
+                    <option value="High">High Priority</option>
+                    <option value="Medium">Medium Priority</option>
+                    <option value="Low">Low Priority</option>
                 </select>
                 <button id="addTaskBtn">Add Task</button>
             </div>
 
-            <!-- Task Summary Section -->
-            <div class="task-summary">
-                <h3>Task Summary</h3>
-                <p>Total Tasks: <span id="totalTasks">0</span></p>
-                <p>Completed: <span id="completedTasks">0</span></p>
-                <p>Pending: <span id="pendingTasks">0</span></p>
+            <!-- Progress Tracker -->
+            <div class="progress-container">
+                <p>Tasks Completed: <span id="completedTasks">0</span> / <span id="totalTasks">0</span></p>
+                <div class="progress-bar">
+                    <div class="progress"></div>
+                </div>
             </div>
 
-            <!-- Search Bar -->
-            <div class="search-container">
-                <input type="text" id="searchInput" placeholder="Search tasks..." />
-            </div>
-
-            <!-- Task List Section -->
-            <h3>Tasks</h3>
+            <!-- Task List -->
             <ul id="taskList"></ul>
 
-            <!-- Clear All Tasks Button -->
+            <!-- Clear All Button -->
             <button id="clearAllBtn">Clear All Tasks</button>
         </div>
     </div>
