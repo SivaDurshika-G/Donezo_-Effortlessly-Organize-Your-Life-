@@ -2,44 +2,56 @@ document.addEventListener('DOMContentLoaded', () => {
     const taskInput = document.getElementById('taskInput');
     const addTaskBtn = document.getElementById('addTaskBtn');
     const taskList = document.getElementById('taskList');
+    const totalTasks = document.getElementById('totalTasks');
+    const completedTasks = document.getElementById('completedTasks');
+    const pendingTasks = document.getElementById('pendingTasks');
+    const categorySelect = document.getElementById('categorySelect');
+    const prioritySelect = document.getElementById('prioritySelect');
+    const clearAllBtn = document.getElementById('clearAllBtn');
+    const searchInput = document.getElementById('searchInput');
 
-    // Add Task Function
+    let tasks = [];
+
+    // Add a Task
     addTaskBtn.addEventListener('click', () => {
-        const taskText = taskInput.value.trim();
-
-        if (taskText === '') {
-            alert('Please enter a task!');
+        const taskName = taskInput.value.trim();
+        if (!taskName) {
+            alert('Task cannot be empty!');
             return;
         }
 
-        // Create Task Item
-        const taskItem = document.createElement('li');
-        taskItem.textContent = taskText;
+        const category = categorySelect.value;
+        const priority = prioritySelect.value;
 
-        // Mark as Completed
-        taskItem.addEventListener('click', () => {
-            taskItem.classList.toggle('completed');
-        });
-
-        // Add Remove Button
-        const removeBtn = document.createElement('button');
-        removeBtn.textContent = 'Remove';
-        removeBtn.classList.add('remove-btn');
-        removeBtn.addEventListener('click', () => {
-            taskList.removeChild(taskItem);
-        });
-
-        taskItem.appendChild(removeBtn);
-        taskList.appendChild(taskItem);
-
-        // Clear Input Field
+        tasks.push({ name: taskName, category, priority, completed: false });
+        renderTasks();
         taskInput.value = '';
     });
 
-    // Handle Enter Key Press for Adding Task
-    taskInput.addEventListener('keypress', (event) => {
-        if (event.key === 'Enter') {
-            addTaskBtn.click();
-        }
+    // Render Tasks
+    function renderTasks() {
+        taskList.innerHTML = '';
+        tasks.forEach((task, index) => {
+            const li = document.createElement('li');
+            li.innerHTML = `
+                ${task.name} [${task.category}] (${task.priority})
+                <button onclick="removeTask(${index})">Remove</button>
+            `;
+            taskList.appendChild(li);
+        });
+        updateSummary();
+    }
+
+    // Update Task Summary
+    function updateSummary() {
+        totalTasks.textContent = tasks.length;
+        completedTasks.textContent = tasks.filter(t => t.completed).length;
+        pendingTasks.textContent = tasks.filter(t => !t.completed).length;
+    }
+
+    // Clear All Tasks
+    clearAllBtn.addEventListener('click', () => {
+        tasks = [];
+        renderTasks();
     });
 });
