@@ -1,52 +1,45 @@
-// Add a task to the list
-function addTask() {
-  const taskInput = document.getElementById('task').value;
-  const descriptionInput = document.getElementById('description').value;
-  const priorityInput = document.getElementById('priority').value;
+document.addEventListener('DOMContentLoaded', () => {
+    const taskInput = document.getElementById('taskInput');
+    const addTaskBtn = document.getElementById('addTaskBtn');
+    const taskList = document.getElementById('taskList');
 
-  if (taskInput.trim() === '') return; // Do not add empty tasks
+    // Add Task Function
+    addTaskBtn.addEventListener('click', () => {
+        const taskText = taskInput.value.trim();
 
-  const task = {
-    title: taskInput,
-    description: descriptionInput,
-    priority: priorityInput,
-    completed: false
-  };
+        if (taskText === '') {
+            alert('Please enter a task!');
+            return;
+        }
 
-  // Create new task element
-  const taskElement = document.createElement('li');
-  taskElement.innerHTML = `
-    <span>${task.title} - ${task.priority}</span>
-    <button onclick="completeTask(this)">✔</button>
-    <button onclick="deleteTask(this)">❌</button>
-  `;
-  taskElement.classList.add(priorityInput.toLowerCase());
+        // Create Task Item
+        const taskItem = document.createElement('li');
+        taskItem.textContent = taskText;
 
-  // Append the new task to the active tasks list
-  const activeTasksList = document.getElementById('activeTasks');
-  activeTasksList.appendChild(taskElement);
+        // Mark as Completed
+        taskItem.addEventListener('click', () => {
+            taskItem.classList.toggle('completed');
+        });
 
-  // Clear input fields
-  document.getElementById('task').value = '';
-  document.getElementById('description').value = '';
-}
+        // Add Remove Button
+        const removeBtn = document.createElement('button');
+        removeBtn.textContent = 'Remove';
+        removeBtn.classList.add('remove-btn');
+        removeBtn.addEventListener('click', () => {
+            taskList.removeChild(taskItem);
+        });
 
-// Mark task as completed
-function completeTask(button) {
-  const taskElement = button.parentElement;
-  taskElement.classList.add('completed');
-  document.getElementById('completedTasks').appendChild(taskElement);
-  document.getElementById('activeTasks').removeChild(taskElement);
-}
+        taskItem.appendChild(removeBtn);
+        taskList.appendChild(taskItem);
 
-// Delete a task
-function deleteTask(button) {
-  const taskElement = button.parentElement;
-  taskElement.remove();
-}
+        // Clear Input Field
+        taskInput.value = '';
+    });
 
-// Clear completed tasks
-function clearCompleted() {
-  const completedTasks = document.getElementById('completedTasks');
-  completedTasks.innerHTML = '';
-}
+    // Handle Enter Key Press for Adding Task
+    taskInput.addEventListener('keypress', (event) => {
+        if (event.key === 'Enter') {
+            addTaskBtn.click();
+        }
+    });
+});
