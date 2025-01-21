@@ -3,18 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>To-Do List App</title>
+    <title>Advanced To-Do List App</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="todo-wrapper">
         <div class="todo-container">
-            <h1>To-Do List 📝🌐</h1>
+            <h1>To-Do List App 🚀</h1>
+
+            <!-- Task Input Section -->
             <div class="todo-input-container">
-                <input type="text" id="taskInput" placeholder="Enter a task..." />
+                <input type="text" id="taskInput" placeholder="Add a task..." />
+                <select id="categorySelect">
+                    <option value="Personal">Personal</option>
+                    <option value="Work">Work</option>
+                    <option value="Shopping">Shopping</option>
+                </select>
+                <select id="prioritySelect">
+                    <option value="High">High</option>
+                    <option value="Medium">Medium</option>
+                    <option value="Low">Low</option>
+                </select>
                 <button id="addTaskBtn">Add Task</button>
             </div>
+
+            <!-- Task Summary Section -->
+            <div class="task-summary">
+                <h3>Task Summary</h3>
+                <p>Total Tasks: <span id="totalTasks">0</span></p>
+                <p>Completed: <span id="completedTasks">0</span></p>
+                <p>Pending: <span id="pendingTasks">0</span></p>
+            </div>
+
+            <!-- Search Bar -->
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Search tasks..." />
+            </div>
+
+            <!-- Task List Section -->
+            <h3>Tasks</h3>
             <ul id="taskList"></ul>
+
+            <!-- Clear All Tasks Button -->
+            <button id="clearAllBtn">Clear All Tasks</button>
         </div>
     </div>
     <script src="script.js"></script>
