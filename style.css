@@ -5,84 +5,81 @@
     box-sizing: border-box;
 }
 
-/* Body Styling */
+/* Body and Wrapper */
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Arial', sans-serif;
     background: linear-gradient(135deg, #6a11cb, #2575fc);
+    color: #fff;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    color: #333;
+    overflow: hidden;
 }
 
-/* Wrapper to Center the App */
-.todo-wrapper {
+.app-wrapper {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100%;
     width: 100%;
 }
 
 /* Main Container */
-.todo-container {
+.app-container {
     background: #ffffff;
-    padding: 30px;
+    color: #333;
+    padding: 20px;
     border-radius: 12px;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-    width: 90%;
     max-width: 400px;
-    text-align: center;
-    animation: fadeIn 1s ease-in-out;
+    width: 90%;
+    animation: fadeIn 1s ease;
 }
 
-/* Heading */
-h1 {
+/* Header Section */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     margin-bottom: 20px;
-    font-size: 2rem;
+}
+
+header h1 {
+    font-size: 1.5rem;
     color: #4caf50;
-    animation: bounceIn 1s ease;
+}
+
+#themeToggle {
+    background: #4caf50;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
 }
 
 /* Input Section */
-.todo-input-container {
+.input-container {
     display: flex;
     justify-content: space-between;
-    gap: 10px;
     margin-bottom: 20px;
+    gap: 10px;
 }
 
 input, select {
     padding: 10px;
     border: 2px solid #ccc;
     border-radius: 5px;
-    font-size: 14px;
     flex: 1;
 }
 
 button {
     background: #4caf50;
-    color: white;
-    padding: 10px;
-    border-radius: 5px;
+    color: #fff;
     border: none;
+    border-radius: 5px;
+    padding: 10px;
     cursor: pointer;
-    transition: background 0.3s ease;
-}
-
-button:hover {
-    background: #45a049;
-}
-
-/* Summary Section */
-.task-summary {
-    margin-bottom: 20px;
-    text-align: left;
-}
-
-.task-summary h3 {
-    margin-bottom: 10px;
 }
 
 /* Task List */
@@ -91,73 +88,50 @@ ul {
     padding: 0;
     max-height: 200px;
     overflow-y: auto;
-    margin-bottom: 20px;
 }
 
 li {
     background: #f9f9f9;
-    margin-bottom: 10px;
     padding: 10px;
+    margin-bottom: 10px;
     border-radius: 5px;
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    animation: slideIn 0.5s ease;
 }
 
 li.completed {
-    background: #e0f7fa;
     text-decoration: line-through;
-    color: gray;
+    background: #d9f9d9;
 }
 
-/* Clear All Button */
-#clearAllBtn {
-    background: #ff4d4d;
-    color: white;
-    padding: 10px;
+/* Progress Bar */
+.progress-container {
+    margin-bottom: 20px;
+}
+
+.progress-bar {
+    background: #ccc;
     border-radius: 5px;
-    cursor: pointer;
-    transition: background 0.3s ease;
+    height: 10px;
+    width: 100%;
+    overflow: hidden;
 }
 
-#clearAllBtn:hover {
-    background: #e60000;
+.progress {
+    background: #4caf50;
+    height: 100%;
+    width: 0;
+    transition: width 0.3s ease;
 }
 
 /* Animations */
 @keyframes fadeIn {
     from {
         opacity: 0;
-        transform: translateY(-20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes bounceIn {
-    0% {
         transform: scale(0.9);
-        opacity: 0;
-    }
-    50% {
-        transform: scale(1.1);
-    }
-    100% {
-        transform: scale(1);
-        opacity: 1;
-    }
-}
-
-@keyframes slideIn {
-    from {
-        transform: translateX(-20px);
-        opacity: 0;
     }
     to {
-        transform: translateX(0);
         opacity: 1;
+        transform: scale(1);
     }
 }
