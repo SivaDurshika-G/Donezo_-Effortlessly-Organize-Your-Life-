@@ -3,43 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Next-Gen To-Do List App</title>
+    <title>Enhanced To-Do List App</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="app-wrapper">
-        <div class="app-container">
-            <header>
-                <h1>🚀 My Next-Gen To-Do List</h1>
-                <button id="themeToggle">Toggle Light/Dark Mode</button>
-            </header>
 
-            <!-- Task Input Section -->
-            <div class="input-container">
-                <input type="text" id="taskInput" placeholder="What do you need to do?" />
-                <select id="prioritySelect">
-                    <option value="High">High Priority</option>
-                    <option value="Medium">Medium Priority</option>
-                    <option value="Low">Low Priority</option>
-                </select>
-                <button id="addTaskBtn">Add Task</button>
-            </div>
+    <div class="app-container">
+        <header>
+            <h1>Task Manager</h1>
+            <button id="themeToggle">Toggle Dark Mode</button>
+        </header>
 
-            <!-- Progress Tracker -->
-            <div class="progress-container">
-                <p>Tasks Completed: <span id="completedTasks">0</span> / <span id="totalTasks">0</span></p>
-                <div class="progress-bar">
-                    <div class="progress"></div>
-                </div>
-            </div>
-
-            <!-- Task List -->
-            <ul id="taskList"></ul>
-
-            <!-- Clear All Button -->
-            <button id="clearAllBtn">Clear All Tasks</button>
+        <!-- Task Input & Controls -->
+        <div class="task-input">
+            <input type="text" id="taskDescription" placeholder="Add a new task" />
+            <input type="date" id="taskDueDate" />
+            <select id="taskPriority">
+                <option value="High">High</option>
+                <option value="Medium">Medium</option>
+                <option value="Low">Low</option>
+            </select>
+            <button id="addTaskBtn">Add Task</button>
         </div>
+
+        <!-- Task View Selection -->
+        <div class="view-selection">
+            <button onclick="setView('list')">List View</button>
+            <button onclick="setView('calendar')">Calendar View</button>
+            <button onclick="setView('kanban')">Kanban Board</button>
+        </div>
+
+        <!-- Task List -->
+        <div id="taskViews">
+            <ul id="taskList" class="task-list"></ul>
+        </div>
+
+        <div class="filters">
+            <button onclick="filterTasks('all')">All Tasks</button>
+            <button onclick="filterTasks('completed')">Completed</button>
+            <button onclick="filterTasks('pending')">Pending</button>
+            <input type="search" id="search" placeholder="Search tasks" onkeyup="searchTasks()">
+        </div>
+
+        <!-- Clear Completed Tasks Button -->
+        <button id="clearCompletedBtn" onclick="clearCompleted()">Clear Completed</button>
+
     </div>
-    <script src="script.js"></script>
+
+    <script src="app.js"></script>
 </body>
 </html>
