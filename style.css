@@ -8,20 +8,30 @@
 /* Body Styling */
 body {
     font-family: Arial, sans-serif;
-    background: linear-gradient(to right, #85ffbd, #fffb7d);
+    background: linear-gradient(135deg, #6a11cb, #2575fc);
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
     color: #333;
+    overflow: hidden;
+}
+
+/* Wrapper to Center the To-Do App */
+.todo-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
 }
 
 /* Main Container Styling */
 .todo-container {
     background: #ffffff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
     width: 90%;
     max-width: 400px;
     text-align: center;
@@ -32,6 +42,8 @@ body {
 h1 {
     margin-bottom: 20px;
     color: #4caf50;
+    font-size: 2rem;
+    animation: bounceIn 1s ease;
 }
 
 /* Input Container */
@@ -78,6 +90,7 @@ ul {
     padding: 0;
     max-height: 300px;
     overflow-y: auto;
+    scrollbar-width: thin;
 }
 
 li {
@@ -115,8 +128,24 @@ li.completed {
 @keyframes fadeIn {
     from {
         opacity: 0;
+        transform: translateY(-20px);
     }
     to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes bounceIn {
+    0% {
+        transform: scale(0.9);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
         opacity: 1;
     }
 }
