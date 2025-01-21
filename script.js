@@ -1,29 +1,27 @@
 document.addEventListener('DOMContentLoaded', () => {
     const taskInput = document.getElementById('taskInput');
+    const prioritySelect = document.getElementById('prioritySelect');
     const addTaskBtn = document.getElementById('addTaskBtn');
     const taskList = document.getElementById('taskList');
+    const clearAllBtn = document.getElementById('clearAllBtn');
     const totalTasks = document.getElementById('totalTasks');
     const completedTasks = document.getElementById('completedTasks');
-    const pendingTasks = document.getElementById('pendingTasks');
-    const categorySelect = document.getElementById('categorySelect');
-    const prioritySelect = document.getElementById('prioritySelect');
-    const clearAllBtn = document.getElementById('clearAllBtn');
-    const searchInput = document.getElementById('searchInput');
+    const progressBar = document.querySelector('.progress');
 
     let tasks = [];
 
-    // Add a Task
+    // Add Task
     addTaskBtn.addEventListener('click', () => {
-        const taskName = taskInput.value.trim();
-        if (!taskName) {
+        const taskText = taskInput.value.trim();
+        const priority = prioritySelect.value;
+
+        if (!taskText) {
             alert('Task cannot be empty!');
             return;
         }
 
-        const category = categorySelect.value;
-        const priority = prioritySelect.value;
-
-        tasks.push({ name: taskName, category, priority, completed: false });
+        const task = { text: taskText, priority, completed: false };
+        tasks.push(task);
         renderTasks();
         taskInput.value = '';
     });
@@ -33,25 +31,45 @@ document.addEventListener('DOMContentLoaded', () => {
         taskList.innerHTML = '';
         tasks.forEach((task, index) => {
             const li = document.createElement('li');
+            li.classList.toggle('completed', task.completed);
             li.innerHTML = `
-                ${task.name} [${task.category}] (${task.priority})
-                <button onclick="removeTask(${index})">Remove</button>
+                ${task.text} (${task.priority})
+                <button onclick="toggleTask(${index})">✔</button>
+                <button onclick="removeTask(${index})">❌</button>
             `;
             taskList.appendChild(li);
         });
-        updateSummary();
+
+        updateProgress();
     }
 
-    // Update Task Summary
-    function updateSummary() {
-        totalTasks.textContent = tasks.length;
-        completedTasks.textContent = tasks.filter(t => t.completed).length;
-        pendingTasks.textContent = tasks.filter(t => !t.completed).length;
-    }
+    // Toggle Task Completion
+    window.toggleTask = function (index) {
+        tasks[index].completed = !tasks[index].completed;
+        renderTasks();
+    };
+
+    // Remove Task
+    window.removeTask = function (index) {
+        tasks.splice(index, 1);
+        renderTasks();
+    };
 
     // Clear All Tasks
     clearAllBtn.addEventListener('click', () => {
         tasks = [];
         renderTasks();
     });
+
+    // Update Progress
+    function updateProgress() {
+        const total = tasks.length;
+        const completed = tasks.filter(task => task.completed).length;
+
+        totalTasks.textContent = total;
+        completedTasks.textContent = completed;
+
+        const progressPercent = total === 0 ? 0 : (completed / total) * 100;
+        progressBar.style.width = `${progressPercent}%`;
+    }
 });
