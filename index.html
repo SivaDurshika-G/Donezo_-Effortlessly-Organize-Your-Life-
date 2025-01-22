@@ -4,38 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Donezo: To-Do List App</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div class="center-container">
-<link rel="stylesheet" href="style.css"> 
-        <header>
-            <h1>Donezo: <span class="highlight">To-Do List App</span></h1>
-            <span class="lock-icon">🔒</span>
-        </header>
-        <div class="date-time">
-            <p id="date-time"></p>
-        </div>
-        <form id="task-form">
-            <input type="text" id="task-input" placeholder="Add a task..." required>
-            <input type="text" id="task-desc" placeholder="Optional description...">
-            <select id="priority">
-                <option value="low">Low Priority</option>
-                <option value="medium">Medium Priority</option>
-                <option value="high">High Priority</option>
-            </select>
-            <button type="submit">Add Task</button>
-        </form>
-        <div class="stats">
-            <p>All Tasks: <span id="all-tasks">0</span></p>
-            <p>Active Tasks: <span id="active-tasks">0</span></p>
-            <p>Completed Tasks: <span id="completed-tasks">0</span></p>
-            <button id="clear-completed">Clear Completed Tasks</button>
-        </div>
-        <div class="task-list">
-            <h3>Tasks</h3>
-            <input type="text" id="task-search" placeholder="Search tasks...">
-            <ul id="tasks"></ul>
+    <div class="center-container">
+        <div class="content-box">
+            <header>
+                <h1>Donezo: <span class="highlight">To-Do List App</span></h1>
+                <span class="lock-icon">🔒</span>
+            </header>
+            <div class="date-time">
+                <p id="date-time"></p>
+            </div>
+            <form id="task-form">
+                <input type="text" id="task-input" placeholder="Add a task..." required>
+                <input type="text" id="task-desc" placeholder="Optional description...">
+                <select id="priority">
+                    <option value="low">Low Priority</option>
+                    <option value="medium">Medium Priority</option>
+                    <option value="high">High Priority</option>
+                </select>
+                <button type="submit">Add Task</button>
+            </form>
+            <div class="stats">
+                <p>All Tasks: <span id="all-tasks">0</span></p>
+                <p>Active Tasks: <span id="active-tasks">0</span></p>
+                <p>Completed Tasks: <span id="completed-tasks">0</span></p>
+                <button id="clear-completed">Clear Completed Tasks</button>
+            </div>
+            <div class="task-list">
+                <h3>Tasks</h3>
+                <input type="text" id="task-search" placeholder="Search tasks...">
+                <ul id="tasks"></ul>
+            </div>
         </div>
     </div>
     <script src="script.js"></script>
