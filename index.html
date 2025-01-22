@@ -3,53 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Enhanced To-Do List App</title>
+    <title>Donezo: To-Do List App</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-
-    <div class="app-container">
+    <div class="container">
         <header>
-            <h1>Task Manager</h1>
-            <button id="themeToggle">Toggle Dark Mode</button>
+            <h1>Donezo: <span class="highlight">To-Do List App</span></h1>
+            <div class="lock-icon">🔒</div>
         </header>
-
-        <!-- Task Input & Controls -->
-        <div class="task-input">
-            <input type="text" id="taskDescription" placeholder="Add a new task" />
-            <input type="date" id="taskDueDate" />
-            <select id="taskPriority">
-                <option value="High">High</option>
-                <option value="Medium">Medium</option>
-                <option value="Low">Low</option>
+        <div class="date-time">
+            <p id="current-date"></p>
+            <p id="current-time"></p>
+        </div>
+        <form id="task-form">
+            <input type="text" id="task-input" placeholder="Add a task..." required>
+            <input type="text" id="description-input" placeholder="Optional description...">
+            <select id="priority-select">
+                <option value="Low Priority">Low Priority</option>
+                <option value="Medium Priority">Medium Priority</option>
+                <option value="High Priority">High Priority</option>
             </select>
-            <button id="addTaskBtn">Add Task</button>
+            <button type="submit" id="add-task-button">Add Task</button>
+        </form>
+        <div class="stats">
+            <p>All Tasks: <span id="all-tasks">0</span></p>
+            <p>Active Tasks: <span id="active-tasks">0</span></p>
+            <p>Completed Tasks: <span id="completed-tasks">0</span></p>
+            <button id="clear-completed">Clear Completed Tasks</button>
         </div>
-
-        <!-- Task View Selection -->
-        <div class="view-selection">
-            <button onclick="setView('list')">List View</button>
-            <button onclick="setView('calendar')">Calendar View</button>
-            <button onclick="setView('kanban')">Kanban Board</button>
+        <div class="task-list">
+            <input type="text" id="search-bar" placeholder="Search tasks...">
+            <ul id="tasks"></ul>
         </div>
-
-        <!-- Task List -->
-        <div id="taskViews">
-            <ul id="taskList" class="task-list"></ul>
-        </div>
-
-        <div class="filters">
-            <button onclick="filterTasks('all')">All Tasks</button>
-            <button onclick="filterTasks('completed')">Completed</button>
-            <button onclick="filterTasks('pending')">Pending</button>
-            <input type="search" id="search" placeholder="Search tasks" onkeyup="searchTasks()">
-        </div>
-
-        <!-- Clear Completed Tasks Button -->
-        <button id="clearCompletedBtn" onclick="clearCompleted()">Clear Completed</button>
-
     </div>
-
-    <script src="app.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
