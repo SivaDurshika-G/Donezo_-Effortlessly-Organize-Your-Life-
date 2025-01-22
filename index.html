@@ -3,28 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Donezo: To-Do List App</title>
+    <title>Taskee: To-Do List App</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>Donezo: <span class="highlight">To-Do List App</span></h1>
-            <div class="lock-icon">🔒</div>
+            <h1>Taskee: <span class="highlight">To-Do List App</span></h1>
+            <span class="lock-icon">🔒</span>
         </header>
         <div class="date-time">
-            <p id="current-date"></p>
-            <p id="current-time"></p>
+            <p id="date-time"></p>
         </div>
         <form id="task-form">
             <input type="text" id="task-input" placeholder="Add a task..." required>
-            <input type="text" id="description-input" placeholder="Optional description...">
-            <select id="priority-select">
-                <option value="Low Priority">Low Priority</option>
-                <option value="Medium Priority">Medium Priority</option>
-                <option value="High Priority">High Priority</option>
+            <input type="text" id="task-desc" placeholder="Optional description...">
+            <select id="priority">
+                <option value="low">Low Priority</option>
+                <option value="medium">Medium Priority</option>
+                <option value="high">High Priority</option>
             </select>
-            <button type="submit" id="add-task-button">Add Task</button>
+            <button type="submit">Add Task</button>
         </form>
         <div class="stats">
             <p>All Tasks: <span id="all-tasks">0</span></p>
@@ -33,7 +32,8 @@
             <button id="clear-completed">Clear Completed Tasks</button>
         </div>
         <div class="task-list">
-            <input type="text" id="search-bar" placeholder="Search tasks...">
+            <h3>Tasks</h3>
+            <input type="text" id="task-search" placeholder="Search tasks...">
             <ul id="tasks"></ul>
         </div>
     </div>
