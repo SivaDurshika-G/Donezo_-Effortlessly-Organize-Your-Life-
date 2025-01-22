@@ -13,16 +13,23 @@ body {
 
 .container {
     width: 400px;
-    background: #a8f1e0;
+    background: #f3fff9;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
 
 header {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
+    width: 100%;
+    margin-bottom: 10px;
 }
 
 .highlight {
@@ -30,8 +37,12 @@ header {
     font-weight: bold;
 }
 
+.lock-icon {
+    margin-left: 10px;
+    font-size: 1.2rem;
+}
+
 .date-time {
-    text-align: right;
     margin-bottom: 20px;
     font-size: 0.9em;
     color: #555;
@@ -41,6 +52,7 @@ form {
     display: flex;
     flex-direction: column;
     gap: 10px;
+    width: 100%;
 }
 
 form input, select, button {
@@ -62,6 +74,7 @@ button:hover {
 
 .stats, .task-list {
     margin-top: 20px;
+    width: 100%;
 }
 
 .stats p {
