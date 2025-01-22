@@ -98,15 +98,13 @@ button:hover {
     padding: 10px;
     border-radius: 5px;
 }
-.flex-container {
+.app-container {
     display: flex;
-    justify-content: center; /* Horizontal centering */
-    align-items: center; /* Vertical centering */
-    height: 100vh;
-    background: lightblue;
-}
-
-.box {
-    padding: 20px;
-    background: white;
+    justify-content: center; /* Centers content horizontally */
+    align-items: center; /* Centers content vertically */
+    height: 100vh; /* Ensures the container fills the entire viewport */
+    background-color: lightblue; /* Add background color */
+    margin: 0; /* Removes default margin for consistent centering */
+    text-align: center; /* Centers text inside */
+    flex-direction: column; /* Optional: stack items vertically */
 }
