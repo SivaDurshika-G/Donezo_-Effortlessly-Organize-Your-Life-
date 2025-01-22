@@ -98,3 +98,15 @@ button:hover {
     padding: 10px;
     border-radius: 5px;
 }
+.flex-container {
+    display: flex;
+    justify-content: center; /* Horizontal centering */
+    align-items: center; /* Vertical centering */
+    height: 100vh;
+    background: lightblue;
+}
+
+.box {
+    padding: 20px;
+    background: white;
+}
