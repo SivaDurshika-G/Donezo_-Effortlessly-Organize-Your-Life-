@@ -1,98 +1,74 @@
+// script.js
+
+// Display current date and time
+const dateElement = document.getElementById("current-date");
+const timeElement = document.getElementById("current-time");
+
+setInterval(() => {
+    const now = new Date();
+    dateElement.textContent = now.toLocaleDateString();
+    timeElement.textContent = now.toLocaleTimeString();
+}, 1000);
+
+// Task management
+const taskForm = document.getElementById("task-form");
+const taskInput = document.getElementById("task-input");
+const descriptionInput = document.getElementById("description-input");
+const prioritySelect = document.getElementById("priority-select");
+const tasksList = document.getElementById("tasks");
+
+const allTasks = document.getElementById("all-tasks");
+const activeTasks = document.getElementById("active-tasks");
+const completedTasks = document.getElementById("completed-tasks");
+
 let tasks = [];
-let currentView = 'list'; // Default view
 
-// Toggle Dark Mode
-document.getElementById('themeToggle').addEventListener('click', () => {
-    document.body.classList.toggle('dark-mode');
-});
+taskForm.addEventListener("submit", (e) => {
+    e.preventDefault();
 
-// Add Task Function
-document.getElementById('addTaskBtn').addEventListener('click', addTask);
-
-function addTask() {
-    const description = document.getElementById('taskDescription').value;
-    const dueDate = document.getElementById('taskDueDate').value;
-    const priority = document.getElementById('taskPriority').value;
-
-    if (description.trim() === '') return;
-
-    const newTask = {
-        description,
-        dueDate,
-        priority,
+    const task = {
+        name: taskInput.value,
+        description: descriptionInput.value,
+        priority: prioritySelect.value,
         completed: false,
-        id: Date.now(),
-        subTasks: []
     };
 
-    tasks.push(newTask);
+    tasks.push(task);
     renderTasks();
-    document.getElementById('taskDescription').value = '';
-}
+    taskForm.reset();
+});
 
-// Render Tasks Based on View
 function renderTasks() {
-    const taskList = document.getElementById('taskList');
-    taskList.innerHTML = '';
-    let filteredTasks = tasks;
-
-    filteredTasks.forEach(task => {
-        const taskElement = document.createElement('li');
-        taskElement.className = task.completed ? 'completed' : '';
-        taskElement.innerHTML = `
-            <span>${task.description} (Due: ${task.dueDate}) - Priority: ${task.priority}</span>
-            <input type="checkbox" onclick="toggleCompletion(${task.id})" ${task.completed ? 'checked' : ''}>
-            <button class="remove" onclick="removeTask(${task.id})">Remove</button>
+    tasksList.innerHTML = "";
+    tasks.forEach((task, index) => {
+        const taskItem = document.createElement("li");
+        taskItem.innerHTML = `
+            <div>
+                <strong>${task.name}</strong> - ${task.priority}
+                <p>${task.description}</p>
+            </div>
+            <button onclick="toggleComplete(${index})">${
+            task.completed ? "Undo" : "Complete"
+        }</button>
         `;
-        taskList.appendChild(taskElement);
+        tasksList.appendChild(taskItem);
     });
+
+    updateStats();
 }
 
-// Toggle Task Completion
-function toggleCompletion(id) {
-    const task = tasks.find(task => task.id === id);
-    task.completed = !task.completed;
+function toggleComplete(index) {
+    tasks[index].completed = !tasks[index].completed;
     renderTasks();
 }
 
-// Remove Task
-function removeTask(id) {
-    tasks = tasks.filter(task => task.id !== id);
+function updateStats() {
+    allTasks.textContent = tasks.length;
+    activeTasks.textContent = tasks.filter((task) => !task.completed).length;
+    completedTasks.textContent = tasks.filter((task) => task.completed).length;
+}
+
+document.getElementById("clear-completed").addEventListener("click", () => {
+    tasks = tasks.filter((task) => !task.completed);
     renderTasks();
-}
-
-// Filter Tasks
-function filterTasks(status) {
-    let filteredTasks = tasks;
-    if (status === 'completed') {
-        filteredTasks = tasks.filter(task => task.completed);
-    } else if (status === 'pending') {
-        filteredTasks = tasks.filter(task => !task.completed);
-    }
-    renderTasks();
-}
-
-// Search Tasks
-function searchTasks() {
-    const searchTerm = document.getElementById('search').value.toLowerCase();
-    const filteredTasks = tasks.filter(task => task.description.toLowerCase().includes(searchTerm));
-    renderTasks(filteredTasks);
-}
-
-// Clear Completed Tasks
-function clearCompleted() {
-    tasks = tasks.filter(task => !task.completed);
-    renderTasks();
-}
-
-// Set View Mode
-function setView(view) {
-    currentView = view;
-    if (view === 'list') {
-        renderTasks();
-    } else if (view === 'calendar') {
-        // Implement Calendar View logic here
-    } else if (view === 'kanban') {
-        // Implement Kanban View logic here
-    }
-}
+});
