@@ -1,25 +1,19 @@
-// script.js
-
 // Display current date and time
-const dateElement = document.getElementById("current-date");
-const timeElement = document.getElementById("current-time");
-
-setInterval(() => {
+function updateDateTime() {
     const now = new Date();
-    dateElement.textContent = now.toLocaleDateString();
-    timeElement.textContent = now.toLocaleTimeString();
-}, 1000);
+    document.getElementById("date-time").innerText = now.toLocaleString();
+}
+setInterval(updateDateTime, 1000);
 
 // Task management
 const taskForm = document.getElementById("task-form");
 const taskInput = document.getElementById("task-input");
-const descriptionInput = document.getElementById("description-input");
-const prioritySelect = document.getElementById("priority-select");
-const tasksList = document.getElementById("tasks");
-
-const allTasks = document.getElementById("all-tasks");
-const activeTasks = document.getElementById("active-tasks");
-const completedTasks = document.getElementById("completed-tasks");
+const taskDesc = document.getElementById("task-desc");
+const prioritySelect = document.getElementById("priority");
+const tasksContainer = document.getElementById("tasks");
+const allTasksCount = document.getElementById("all-tasks");
+const activeTasksCount = document.getElementById("active-tasks");
+const completedTasksCount = document.getElementById("completed-tasks");
 
 let tasks = [];
 
@@ -28,47 +22,41 @@ taskForm.addEventListener("submit", (e) => {
 
     const task = {
         name: taskInput.value,
-        description: descriptionInput.value,
+        description: taskDesc.value,
         priority: prioritySelect.value,
         completed: false,
     };
 
     tasks.push(task);
-    renderTasks();
-    taskForm.reset();
+    taskInput.value = "";
+    taskDesc.value = "";
+
+    updateTasks();
 });
 
-function renderTasks() {
-    tasksList.innerHTML = "";
+function updateTasks() {
+    tasksContainer.innerHTML = "";
+
     tasks.forEach((task, index) => {
-        const taskItem = document.createElement("li");
-        taskItem.innerHTML = `
-            <div>
-                <strong>${task.name}</strong> - ${task.priority}
-                <p>${task.description}</p>
-            </div>
-            <button onclick="toggleComplete(${index})">${
-            task.completed ? "Undo" : "Complete"
-        }</button>
+        const li = document.createElement("li");
+        li.innerHTML = `
+            <span>${task.name} (${task.priority})</span>
+            <button onclick="toggleComplete(${index})">${task.completed ? "Undo" : "Complete"}</button>
         `;
-        tasksList.appendChild(taskItem);
+        tasksContainer.appendChild(li);
     });
 
-    updateStats();
+    allTasksCount.textContent = tasks.length;
+    activeTasksCount.textContent = tasks.filter((task) => !task.completed).length;
+    completedTasksCount.textContent = tasks.filter((task) => task.completed).length;
 }
 
 function toggleComplete(index) {
     tasks[index].completed = !tasks[index].completed;
-    renderTasks();
-}
-
-function updateStats() {
-    allTasks.textContent = tasks.length;
-    activeTasks.textContent = tasks.filter((task) => !task.completed).length;
-    completedTasks.textContent = tasks.filter((task) => task.completed).length;
+    updateTasks();
 }
 
 document.getElementById("clear-completed").addEventListener("click", () => {
     tasks = tasks.filter((task) => !task.completed);
-    renderTasks();
+    updateTasks();
 });
